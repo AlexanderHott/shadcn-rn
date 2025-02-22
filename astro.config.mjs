@@ -6,9 +6,13 @@ import starlight from "@astrojs/starlight";
 export default defineConfig({
   integrations: [
     starlight({
-      title: "My Docs",
+      title: "shadcn-rn",
+      favicon: "./src/assets/logo.svg",
+      logo: {
+        src: "./src/assets/logo.svg",
+      },
       social: {
-        github: "https://github.com/withastro/starlight",
+        github: "https://github.com/AlexanderHOtt/shadcn-rn",
       },
       sidebar: [
         {
@@ -23,6 +27,9 @@ export default defineConfig({
           autogenerate: { directory: "reference" },
         },
       ],
+      editLink: {
+        baseUrl: "https://github.com/AlexanderHOtt/edit/main/",
+      },
     }),
   ],
 });
