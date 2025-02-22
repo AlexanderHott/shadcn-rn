@@ -28,7 +28,7 @@ export default defineConfig({
         },
       ],
       editLink: {
-        baseUrl: "https://github.com/AlexanderHOtt/edit/main/",
+        baseUrl: "https://github.com/AlexanderHOtt/edit/main/apps/docs/",
       },
     }),
   ],
