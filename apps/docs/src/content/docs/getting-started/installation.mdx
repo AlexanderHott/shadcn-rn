@@ -2,7 +2,43 @@
 title: "Installation"
 description: ""
 ---
+import { Tabs, TabItem } from '@astrojs/starlight/components';
 
-1. `react-native-reanimated`
-1. `react-native-gesture-handler`
-1. `expo-dev-client`
+1. [`react-native-reanimated`](https://docs.swmansion.com/react-native-reanimated/)
+
+    Follow the [setup guide](https://docs.swmansion.com/react-native-reanimated/docs/fundamentals/getting-started) for `react-native-reanimated`.
+
+1. [`react-native-gesture-handler`](https://docs.swmansion.com/react-native-gesture-handler/)
+
+    Follow the [setup guide](https://docs.swmansion.com/react-native-gesture-handler/docs/fundamentals/installation) for `react-native-gesture-handler`
+
+1. [`expo-dev-client`](https://docs.expo.dev/develop/development-builds/introduction/)
+
+    Expo Go is nice for demos, but there are [many reasons why using a development build is better](https://expo.dev/blog/expo-go-vs-development-builds). 
+    <Tabs>
+    <TabItem label="npm">
+    ```bash
+    npm install expo-dev-client
+    ```
+    </TabItem>
+    <TabItem label="yarn">
+    ```bash
+    yarn add expo-dev-client
+    ```
+    </TabItem>
+    <TabItem label="pnpm">
+    ```bash
+    pnpm install expo-dev-client
+    ```
+    </TabItem>
+    <TabItem label="bun">
+    ```bash
+    bun add expo-dev-client
+    ```
+    </TabItem>
+    <TabItem label="expo">
+    ```bash
+    npx expo install expo-dev-client
+    ```
+    </TabItem>
+    </Tabs>

@@ -5,7 +5,7 @@ import starlight from "@astrojs/starlight";
 // https://astro.build/config
 export default defineConfig({
   redirects: {
-    "/": "getting-started/introduction",
+    "/": "/getting-started/introduction",
   },
   integrations: [
     starlight({
