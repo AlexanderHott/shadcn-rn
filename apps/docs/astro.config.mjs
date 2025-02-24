@@ -49,4 +49,5 @@ export default defineConfig({
       },
     }),
   ],
+  site: "https://shadcn-rn.vercel.app/",
 });
