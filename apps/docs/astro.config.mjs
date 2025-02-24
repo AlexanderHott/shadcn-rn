@@ -4,6 +4,9 @@ import starlight from "@astrojs/starlight";
 
 // https://astro.build/config
 export default defineConfig({
+  redirects: {
+    "/": "/getting-started/introduction",
+  },
   integrations: [
     starlight({
       title: "shadcn-rn",
@@ -41,7 +44,8 @@ export default defineConfig({
         },
       ],
       editLink: {
-        baseUrl: "https://github.com/AlexanderHOtt/edit/main/apps/docs/",
+        baseUrl:
+          "https://github.com/AlexanderHOtt/shadcn-rn/edit/main/apps/docs/",
       },
     }),
   ],
