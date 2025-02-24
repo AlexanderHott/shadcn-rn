@@ -62,6 +62,15 @@
     ],
     "experiments": {
       "typedRoutes": true
-    }
+    },
+    "extra": {
+      "router": {
+        "origin": false
+      },
+      "eas": {
+        "projectId": "f6bdb97d-f2d2-4653-969f-de82930e3b54"
+      }
+    },
+    "owner": "alexanderott"
   }
 }

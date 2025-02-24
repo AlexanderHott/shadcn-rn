@@ -1,13 +1,23 @@
 /** @type {import('tailwindcss').Config} */
 module.exports = {
-  content: ["./src/app/**/*.{js,jsx,ts,tsx}"],
+  content: ["./src/**/*.{js,jsx,ts,tsx}"],
   presets: [require("nativewind/preset")],
 
   theme: {
+    fontWeight: {},
+    fontFamily: {
+      black: ["Geist-Black"],
+      extrabold: ["Geist-ExtraBold"],
+      bold: ["Geist-Bold"],
+      semibold: ["Geist-SemiBold"],
+      medium: ["Geist-Medium"],
+      geist: ["Geist-Medium"],
+      normal: ["Geist-Regular"],
+      light: ["Geist-Light"],
+      extralight: ["Geist-ExtraLight"],
+      thin: ["Geist-Thin"],
+    },
     extend: {
-      // fontFamily: {
-      //   sans: ["var(--font-geist-sans)", ...fontFamily.sans],
-      // },
       borderRadius: {
         lg: "var(--radius)",
         md: "calc(var(--radius) - 2px)",

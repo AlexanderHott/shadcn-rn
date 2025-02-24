@@ -4,44 +4,9 @@ import { Text as RNText, View } from "react-native";
 import type { LinkProps as ExpoLinkProps } from "expo-router";
 import { Link as ExpoLink } from "expo-router";
 
-const FONT_WEIGHTS: Record<string, string> = {
-  "font-black": "Black",
-  "font-extrabold": "ExtraBold",
-  "font-bold": "Bold",
-  "font-semibold": "SemiBold",
-  "font-medium": "Medium",
-  "font-normal": "Regular",
-  "font-light": "Light",
-  "font-extralight": "ExtraLight",
-  "font-thin": "Thin",
-};
-
-const DEFAULT_FAMILY = "Geist";
-const MONO_FAMILY = "GeistMono";
-const DEFAULT_WEIGHT = "Regular";
-
-function fontFamilyFix(className?: string) {
-  if (!className) return `font-[${DEFAULT_FAMILY}-${DEFAULT_WEIGHT}]`;
-
-  let classes = className.split(" ").filter((cls) => !cls.startsWith("font-"));
-  const isMono = className?.includes("font-mono") ?? false;
-
-  const fontPrefix = isMono ? MONO_FAMILY : DEFAULT_FAMILY;
-  const weightKey = Object.keys(FONT_WEIGHTS).find((key) =>
-    className?.includes(key),
-  );
-  const newFontClass = `font-[${fontPrefix}${weightKey ? `-${FONT_WEIGHTS[weightKey]}` : `-${DEFAULT_WEIGHT}`}]`;
-
-  classes.push(newFontClass);
-  return classes.join(" ");
-}
-
 export type TextProps = RNTextProps;
 export function Text({ className, ...rest }: RNTextProps) {
-  const newClassName = fontFamilyFix(className);
-  return (
-    <RNText className={cn("font-[Geist-Regular]", newClassName)} {...rest} />
-  );
+  return <RNText className={className} {...rest} />;
 }
 
 export type H1Props = TextProps;
@@ -49,7 +14,7 @@ export function H1({ className, ...rest }: H1Props) {
   return (
     <Text
       className={cn(
-        "scroll-m-20 text-4xl font-semibold tracking-tight lg:text-5xl",
+        "scroll-m-20 text-4xl font-gsemibold tracking-tight lg:text-5xl",
         className,
       )}
       {...rest}
