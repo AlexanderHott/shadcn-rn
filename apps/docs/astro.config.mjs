@@ -14,17 +14,30 @@ export default defineConfig({
       social: {
         github: "https://github.com/AlexanderHOtt/shadcn-rn",
       },
+      customCss: ["./src/global.css"],
       sidebar: [
         {
-          label: "Guides",
+          label: "Getting Started",
           items: [
             // Each item here is one entry in the navigation menu.
-            { label: "Example Guide", slug: "guides/example" },
+            { label: "Introduction", slug: "getting-started/introduction" },
+            { label: "Installation", slug: "getting-started/installation" },
           ],
         },
+        // {
+        //   label: "Guides",
+        //   items: [
+        //     // Each item here is one entry in the navigation menu.
+        //     { label: "Example Guide", slug: "guides/example" },
+        //   ],
+        // },
+        // {
+        //   label: "Reference",
+        //   autogenerate: { directory: "reference" },
+        // },
         {
-          label: "Reference",
-          autogenerate: { directory: "reference" },
+          label: "Components",
+          autogenerate: { directory: "components" },
         },
       ],
       editLink: {

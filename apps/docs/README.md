@@ -7,6 +7,7 @@ This is mainly focused on Android and IOS compatable components, not for web. Co
 - Look more into https://github.com/shadcn-ui/registry-template
 - [ ] reanimatd + gesture handler setup
 - [ ] nativewind setup
+  - https://www.nativewind.dev/
 
 ## Components
 
@@ -60,5 +61,3 @@ This is mainly focused on Android and IOS compatable components, not for web. Co
 - [ ] Toggle
 - [ ] Toggle Group
 - [ ] Tooltip
-
-
