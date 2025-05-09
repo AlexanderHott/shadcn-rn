@@ -1,7 +1,8 @@
-import { Button, ButtonText } from "@/components/ui/button";
-import { H1 } from "@/components/ui/text";
 import { SafeAreaView, ScrollView, View } from "react-native";
 import { Feather } from "@expo/vector-icons";
+
+import { Button, ButtonText } from "@/components/ui/button";
+import { H1 } from "@/components/ui/text";
 
 export default function ButtonShowcaseScreen() {
   return (

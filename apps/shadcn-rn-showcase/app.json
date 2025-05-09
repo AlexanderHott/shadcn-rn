@@ -9,7 +9,8 @@
     "userInterfaceStyle": "automatic",
     "newArchEnabled": true,
     "ios": {
-      "supportsTablet": true
+      "supportsTablet": true,
+      "bundleIdentifier": "zip.zeroxott.shadcnrnshowcase"
     },
     "android": {
       "adaptiveIcon": {
@@ -58,7 +59,8 @@
             "./src/assets/fonts/GeistMono-UltraLight.ttf"
           ]
         }
-      ]
+      ],
+      "expo-web-browser"
     ],
     "experiments": {
       "typedRoutes": true

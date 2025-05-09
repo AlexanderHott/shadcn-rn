@@ -1,3 +1,6 @@
+import { Text } from "react-native";
+import { SafeAreaView } from "react-native-safe-area-context";
+
 import {
   BottomSheet,
   BottomSheetContent,
@@ -5,8 +8,6 @@ import {
   BottomSheetModal,
   BottomSheetTrigger,
 } from "@/components/ui/bottom-sheet";
-import { Text } from "react-native";
-import { SafeAreaView } from "react-native-safe-area-context";
 
 export default function BottomSheetShowcaseScreen() {
   return (

@@ -16,6 +16,7 @@ import React, {
   useState,
 } from "react";
 import { Modal, Pressable, StyleSheet, Text } from "react-native";
+import { GestureHandlerRootView } from "react-native-gesture-handler";
 import GBottomSheet, {
   BottomSheetBackdrop as GBottomSheetBackdrop,
   BottomSheetFlashList as GBottomSheetFlashList,
@@ -27,8 +28,7 @@ import GBottomSheet, {
   BottomSheetView as GBottomSheetView,
 } from "@gorhom/bottom-sheet";
 
-import { colors } from "@/components/ui/colors";
-import { GestureHandlerRootView } from "react-native-gesture-handler";
+import { Slot } from "@/components/ui/slot";
 
 const BottomSheetContext = createContext<{
   ref: RefObject<GBottomSheet>;
@@ -46,7 +46,6 @@ function useBottomSheet() {
 
 export type BottomSheetProps = { children: ReactNode };
 export function BottomSheet(props: BottomSheetProps) {
-  console.log("render bottom sheet");
   const ref = useRef<GBottomSheet>(null);
   const [modalOpen, setModalOpen] = useState(false);
 
@@ -67,11 +66,12 @@ export function BottomSheetModal(props: BottomSheetModalProps) {
       transparent={true}
       visible={modalOpen}
       presentationStyle="overFullScreen"
+      onRequestClose={() => ref.current?.close()}
     >
       <GestureHandlerRootView style={{ flex: 1 }}>
         <GBottomSheet
           ref={ref}
-          // onChange={handleSheetChanges}
+          index={0}
           onClose={() => setModalOpen(false)}
           enablePanDownToClose
           backdropComponent={BottomSheetBackdrop}
@@ -84,20 +84,20 @@ export function BottomSheetModal(props: BottomSheetModalProps) {
   );
 }
 
-export type BottomSheetTriggerProps = PressableProps;
+export type BottomSheetTriggerProps = PressableProps & { asChild?: boolean };
 export const BottomSheetTrigger = (props: BottomSheetTriggerProps) => {
-  const { setModalOpen } = useBottomSheet();
-  const { children, onPress, ...rest } = props;
+  const { setModalOpen, ref } = useBottomSheet();
+  const { onPress, asChild = false, ...rest } = props;
+  const Comp = asChild ? Slot : Pressable;
   return (
-    <Pressable
+    <Comp
       onPress={(e) => {
         setModalOpen?.(true);
+        ref.current?.snapToIndex(0);
         onPress?.(e);
       }}
       {...rest}
-    >
-      {children}
-    </Pressable>
+    />
   );
 };
 
@@ -170,11 +170,11 @@ export const BottomSheetItem = ({
   onPress,
   ...props
 }: BottomSheetItemProps) => {
-  const { setModalOpen } = useBottomSheet();
+  const { ref } = useBottomSheet();
   const onPressCb = useCallback(
     (e: GestureResponderEvent) => {
       if (closeOnSelect) {
-        setModalOpen?.(false);
+        ref.current?.close();
       }
       onPress?.(e);
     },

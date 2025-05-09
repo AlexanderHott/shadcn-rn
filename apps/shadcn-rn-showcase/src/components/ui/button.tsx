@@ -1,11 +1,13 @@
-import { cva, type VariantProps } from "class-variance-authority";
-import { cn } from "@/lib/utils";
-import {
-  TouchableOpacityProps as RNTouchableOpacityProps,
-  TouchableOpacity as RNTouchableOpacity,
-} from "react-native";
+import type { VariantProps } from "class-variance-authority";
 import { createContext, ElementRef, forwardRef, useContext } from "react";
+import {
+  TouchableOpacity as RNTouchableOpacity,
+  TouchableOpacityProps as RNTouchableOpacityProps,
+} from "react-native";
+import { cva } from "class-variance-authority";
+
 import { Text, TextProps } from "@/components/ui/text";
+import { cn } from "@/lib/utils";
 
 export type TouchableOpacityProps = RNTouchableOpacityProps;
 
@@ -19,7 +21,7 @@ export const TouchableOpacity = forwardRef<
 });
 
 const buttonVariants = cva(
-  "flex self-center items-center justify-center gap-2 whitespace-nowrap rounded-md",
+  "flex items-center justify-center gap-2 whitespace-nowrap rounded-md",
   {
     variants: {
       variant: {

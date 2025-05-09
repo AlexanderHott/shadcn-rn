@@ -1,7 +1,5 @@
-import { Button, ButtonText } from "@/components/ui/button";
-import { H1 } from "@/components/ui/text";
 import { useState } from "react";
-import { Modal, StyleSheet, Pressable } from "react-native";
+import { Modal, Pressable, StyleSheet, View } from "react-native";
 import { GestureHandlerRootView } from "react-native-gesture-handler";
 import Animated, {
   runOnJS,
@@ -10,6 +8,11 @@ import Animated, {
   withTiming,
 } from "react-native-reanimated";
 import { SafeAreaView } from "react-native-safe-area-context";
+import { Feather } from "@expo/vector-icons";
+
+import { Button, ButtonText, TouchableOpacity } from "@/components/ui/button";
+import { Input, InputField, InputLabel } from "@/components/ui/input";
+import { H1, H3, P } from "@/components/ui/text";
 
 const INITIAL_SCALE = 0.75;
 const DURATION = 150;
@@ -44,42 +47,48 @@ export default function ModalShowcaseScreen() {
 
   return (
     <SafeAreaView className="flex-1 p-4">
+      <H1>Modal</H1>
       <Button onPress={openModal}>
         <ButtonText> Open modal</ButtonText>
       </Button>
-      <Modal
-        visible={open}
-        className="bg-red-500"
-        transparent
-        onRequestClose={closeModal}
-      >
+      <Modal visible={open} transparent onRequestClose={closeModal}>
         <GestureHandlerRootView className="flex-1">
           <Animated.View
-            style={[
-              {
-                flex: 1,
-                justifyContent: "center",
-                alignItems: "center",
-                backgroundColor: "#00000080",
-              },
-              animatedBackgroundStyle,
-            ]}
+            className="flex-1 items-center justify-center bg-black/50"
+            style={animatedBackgroundStyle}
           >
             <Pressable onPress={closeModal} style={StyleSheet.absoluteFill} />
             <Animated.View
-              style={[
-                animatedStyle,
-                {
-                  backgroundColor: "white",
-                  padding: 16,
-                  borderRadius: 4,
-                },
-              ]}
+              className="relative m-4 flex rounded bg-white p-4"
+              style={animatedStyle}
             >
-              <H1>Modal</H1>
-              <Button onPress={closeModal}>
-                <ButtonText>Close modal</ButtonText>
-              </Button>
+              <View className="flex gap-4">
+                <View className="flex gap-1">
+                  <H3>Edit profile</H3>
+                  <P className="text-muted-foreground">
+                    Make changes to your profile here. Click save when you're
+                    done.
+                  </P>
+                </View>
+                <Input>
+                  <InputLabel>Username</InputLabel>
+                  <InputField placeholder="John Doe" />
+                </Input>
+                <Input>
+                  <InputLabel>Password</InputLabel>
+                  <InputField secureTextEntry placeholder="••••••••••••••••" />
+                </Input>
+
+                <Button onPress={closeModal} className="w-full">
+                  <ButtonText>Submit</ButtonText>
+                </Button>
+              </View>
+              <TouchableOpacity
+                onPress={() => closeModal()}
+                className="absolute right-2 top-2"
+              >
+                <Feather name="x" size={16} color={"#333"} />
+              </TouchableOpacity>
             </Animated.View>
           </Animated.View>
         </GestureHandlerRootView>

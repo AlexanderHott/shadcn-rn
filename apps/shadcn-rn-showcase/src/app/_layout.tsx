@@ -1,11 +1,42 @@
+import React from "react";
+// import { GestureHandlerRootView } from "react-native-gesture-handler";
+// import { Stack } from "expo-router";
+//
+// import "@/global.css";
+//
+// export default function RootLayout() {
+//   return (
+//     <>
+//       {/* <GestureHandlerRootView style={{ flex: 1 }}> */}
+//       <Stack>
+//         <Stack.Screen name="+not-found" />
+//       </Stack>
+//       {/* <Stack screenOptions={{ headerShown: false }} /> */}
+//       {/* <Text>Hi</Text> */}
+//       {/* </GestureHandlerRootView> */}
+//     </>
+//   );
+// }
+
+import { useFonts } from "expo-font";
 import { Stack } from "expo-router";
-import { GestureHandlerRootView } from "react-native-gesture-handler";
-import "@/global.css";
+import { StatusBar } from "expo-status-bar";
+import {
+  DarkTheme,
+  DefaultTheme,
+  ThemeProvider,
+} from "@react-nanpx create-expo-app@latestvigation/native";
+
+import "react-native-reanimated";
 
 export default function RootLayout() {
   return (
-    <GestureHandlerRootView style={{ flex: 1 }}>
-      <Stack screenOptions={{ headerShown: false }} />
-    </GestureHandlerRootView>
+    <>
+      <Stack>
+        <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
+        <Stack.Screen name="+not-found" />
+      </Stack>
+      <StatusBar style="auto" />
+    </>
   );
 }

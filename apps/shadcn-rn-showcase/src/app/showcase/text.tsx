@@ -1,12 +1,13 @@
-import { Blockquote, H1, H2, H3, Li, Link, P, Ul } from "@/components/ui/text";
 import { SafeAreaView, ScrollView, View } from "react-native";
+
+import { Blockquote, H1, H2, H3, Li, Link, P, Ul } from "@/components/ui/text";
 
 export default function TextShowcaseScreen() {
   return (
     <SafeAreaView className="flex-1">
       <ScrollView>
         <View className="m-4">
-          <H1>G The Joke Tax Chronicles</H1>
+          <H1>The Joke Tax Chronicles</H1>
           <P>
             G Once upon a time, in a far-off land, there was a very lazy king
             who spent all day lounging on his throne. One day, his advisors came

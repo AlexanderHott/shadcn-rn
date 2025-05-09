@@ -1,8 +1,9 @@
-import { cn } from "@/lib/utils";
+import type { LinkProps as ExpoLinkProps } from "expo-router";
 import type { TextProps as RNTextProps, ViewProps } from "react-native";
 import { Text as RNText, View } from "react-native";
-import type { LinkProps as ExpoLinkProps } from "expo-router";
 import { Link as ExpoLink } from "expo-router";
+
+import { cn } from "@/lib/utils";
 
 export type TextProps = RNTextProps;
 export function Text({ className, ...rest }: RNTextProps) {
@@ -14,7 +15,7 @@ export function H1({ className, ...rest }: H1Props) {
   return (
     <Text
       className={cn(
-        "scroll-m-20 text-4xl font-gsemibold tracking-tight lg:text-5xl",
+        "scroll-m-20 font-semibold text-4xl tracking-tight lg:text-5xl",
         className,
       )}
       {...rest}
@@ -27,7 +28,7 @@ export function H2({ className, ...rest }: H1Props) {
   return (
     <Text
       className={cn(
-        "mt-10 scroll-m-20 border-b pb-2 text-3xl font-semibold tracking-tight transition-colors",
+        "scroll-m-20 font-semibold text-3xl tracking-tight",
         className,
       )}
       {...rest}
@@ -40,7 +41,7 @@ export function H3({ className, ...rest }: H1Props) {
   return (
     <Text
       className={cn(
-        "mt-10 scroll-m-20 text-2xl font-semibold tracking-tight",
+        "scroll-m-20 font-semibold text-2xl tracking-tight",
         className,
       )}
       {...rest}
@@ -50,7 +51,7 @@ export function H3({ className, ...rest }: H1Props) {
 
 export type PProps = TextProps;
 export function P({ className, ...rest }: PProps) {
-  return <Text className={cn("leading-7 mt-6", className)} {...rest} />;
+  return <Text className={cn("font-normal leading-5", className)} {...rest} />;
 }
 
 export type LinkProps = ExpoLinkProps;
@@ -58,7 +59,7 @@ export function Link({ className, ...rest }: LinkProps) {
   return (
     <ExpoLink
       className={cn(
-        "font-medium text-primary underline underline-offset-4 ",
+        "font-medium text-primary underline underline-offset-4",
         className,
       )}
       {...rest}
@@ -79,7 +80,7 @@ export function Ol({ className, ...rest }: OlProps) {
 export type LiProps = TextProps;
 export function Li({ className, ...rest }: LiProps) {
   return (
-    <View className="flex-row items-start mb-1">
+    <View className="mb-1 flex-row items-start">
       <Text selectable={false} className="mr-2">
         •
       </Text>
@@ -91,7 +92,7 @@ export function Li({ className, ...rest }: LiProps) {
 export type OliProps = TextProps & { index: number };
 export function Oli({ index, className, ...rest }: OliProps) {
   return (
-    <View className="flex-row items-start mb-1">
+    <View className="mb-1 flex-row items-start">
       <Text selectable={false} className="mr-2">
         {index}.
       </Text>
@@ -104,7 +105,7 @@ export type BlockquoteProps = TextProps;
 export function Blockquote({ className, ...rest }: BlockquoteProps) {
   return (
     <Text
-      className={cn("mt-6 border-l-2 border-gray-300 pl-6 italic", className)}
+      className={cn("border-l-2 border-gray-300 pl-6 italic", className)}
       {...rest}
     />
   );
