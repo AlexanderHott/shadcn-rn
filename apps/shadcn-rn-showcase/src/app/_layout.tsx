@@ -25,7 +25,7 @@ import {
   DarkTheme,
   DefaultTheme,
   ThemeProvider,
-} from "@react-nanpx create-expo-app@latestvigation/native";
+} from "@react-navigation/native";
 
 import "react-native-reanimated";
 
