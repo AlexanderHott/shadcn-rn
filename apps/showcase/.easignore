@@ -1,0 +1,8 @@
+.venv/
+*.py
+
+/android
+/ios
+
+*.apk
+*.ipa

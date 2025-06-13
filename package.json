@@ -2,7 +2,8 @@
   "name": "shadcn-rn",
   "version": "1.0.0",
   "scripts": {
-    "docs:dev": "run --cwd apps/docs dev"
+    "docs:dev": "run --cwd apps/docs dev",
+    "app:clean": "rm -rf node_modules bun.lock"
   },
   "workspaces": [
     "apps/*"
