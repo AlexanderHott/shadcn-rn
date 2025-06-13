@@ -26,9 +26,13 @@ export default defineConfig({
       logo: {
         src: "./src/assets/logo.svg",
       },
-      social: {
-        github: "https://github.com/AlexanderHOtt/shadcn-rn",
-      },
+      social: [
+        {
+          icon: "github",
+          label: "GitHub",
+          href: "https://github.com/AlexanderHOtt/shadcn-rn",
+        },
+      ],
       customCss: ["./src/global.css"],
       sidebar: [
         {
