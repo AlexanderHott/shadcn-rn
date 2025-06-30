@@ -5,6 +5,7 @@ import { LegendList } from "@legendapp/list";
 
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { H1, Link, P } from "@/components/ui/text";
+import { useColorScheme } from "@/lib/utils";
 
 interface NavItem {
   href: Href;
@@ -84,40 +85,42 @@ const COMPONENTS = [
 
 export default function Index() {
   return (
-    <SafeAreaView className="flex-1">
-      <View className="flex gap-4">
-        <LegendList
-          ListHeaderComponent={
-            <View className="flex flex-row items-center gap-4 p-4">
-              <Logo />
-              <H1>shadcn/ui React Native</H1>
-            </View>
-          }
-          data={COMPONENTS}
-          keyExtractor={(item) => item.href}
-          renderItem={({ item }) => <ShowcaseLink item={item} />}
-          ItemSeparatorComponent={() => <View className="h-4 w-full" />}
-          estimatedItemSize={121}
-          recycleItems
-        />
-      </View>
-    </SafeAreaView>
+    <LegendList
+      data={COMPONENTS}
+      keyExtractor={(item) => item.href}
+      renderItem={({ item }) => <ShowcaseLink item={item} />}
+      ListHeaderComponent={
+        <View className="flex flex-row items-center gap-4 p-4">
+          {/* <Logo /> */}
+          <H1 adjustsFontSizeToFit numberOfLines={1}>
+            shadcn/ui React Native
+          </H1>
+        </View>
+      }
+      ItemSeparatorComponent={() => <View className="h-4 w-full" />}
+      estimatedItemSize={121}
+      recycleItems
+    />
   );
 }
 
 function Logo() {
+  const { isDarkColorScheme } = useColorScheme();
+  // eslint-disable-next-line @typescript-eslint/no-require-imports
+  const light = require("@/assets/images/icon.png") as number;
+  // eslint-disable-next-line @typescript-eslint/no-require-imports
+  const dark = require("@/assets/images/icon-dark.png") as number;
   return (
     <Image
-      // eslint-disable-next-line @typescript-eslint/no-require-imports
-      source={require("../assets/images/icon.png") as number}
-      style={{ width: 32, height: 32 }}
+      source={isDarkColorScheme ? dark : light}
+      style={{ width: 32, height: 32, borderRadius: 4 }}
     />
   );
 }
 
 function ShowcaseLink({ item }: { item: NavItem }) {
   return (
-    <Link href={item.href} className="px-4">
+    <Link href={item.href} className="mx-4">
       <Card className="w-full">
         <CardHeader>
           <CardTitle>{item.name}</CardTitle>
