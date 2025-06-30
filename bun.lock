@@ -8,12 +8,12 @@
       "name": "shadcn-rn",
       "version": "0.0.1",
       "dependencies": {
-        "@astrojs/starlight": "latest",
-        "astro": "latest",
-        "sharp": "latest",
+        "@astrojs/starlight": "0.34.3",
+        "astro": "5.9.2",
+        "sharp": "^0.34.2",
       },
       "devDependencies": {
-        "prettier": "latest",
+        "prettier": "^3.5.3",
       },
     },
     "apps/showcase": {
@@ -2735,6 +2735,8 @@
     "react-native-web/@react-native/normalize-colors": ["@react-native/normalize-colors@0.74.89", "", {}, "sha512-qoMMXddVKVhZ8PA1AbUCk83trpd6N+1nF2A6k1i6LsQObyS92fELuk8kU/lQs6M7BsMHwqyLCpQJ1uFgNvIQXg=="],
 
     "react-native-web/memoize-one": ["memoize-one@6.0.0", "", {}, "sha512-rkpe71W0N0c0Xz6QD0eJETuWAJGnJ9afsl1srmwPrI+yBCkge5EycXXbYRyvL29zZVUWQCY7InPRCv3GDXuZNw=="],
+
+    "react-test-renderer/react": ["react@19.1.0", "", {}, "sha512-FS+XFBNvn3GTAWq26joslQgWNoFu08F4kl0J4CgdNKADkdSGXQyTCnKteIAJy96Br6YbpEU1LSzV5dYtjMkMDg=="],
 
     "readdirp/picomatch": ["picomatch@2.3.1", "", {}, "sha512-JU3teHTNjmE2VCGFzuY8EXzCDVwEqB2a8fsIvwaStHhAWJEeVd1o1QD80CU6+ZdEXXSLbSsuLwJjkCBWqRQUVA=="],
 

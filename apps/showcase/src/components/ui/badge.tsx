@@ -11,7 +11,7 @@ export const badgeVariants = cva(
   {
     variants: {
       variant: {
-        default: "border-transparent bg-primary ",
+        default: "border-transparent bg-primary",
         secondary: "border-transparent bg-secondary",
         destructive: "border-transparent bg-destructive",
         outline: "",

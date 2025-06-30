@@ -10,7 +10,7 @@ function Card({ className, ...props }: ViewProps) {
     <View
       data-slot="card"
       className={cn(
-        "flex flex-col gap-6 rounded-xl border border-neutral-200 bg-card py-6 text-card-foreground shadow-2xl",
+        "flex flex-col gap-6 rounded-xl border border-neutral-200 bg-card py-6 text-card-foreground shadow",
         className,
       )}
       {...props}

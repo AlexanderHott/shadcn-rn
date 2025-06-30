@@ -1,5 +1,5 @@
 import type { Href } from "expo-router";
-import { Image, ScrollView, View } from "react-native";
+import { Image, View } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { LegendList } from "@legendapp/list";
 
@@ -85,24 +85,22 @@ const COMPONENTS = [
 export default function Index() {
   return (
     <SafeAreaView className="flex-1">
-      <ScrollView>
-        <View className="flex gap-4 p-4">
-          <View className="flex flex-row items-center gap-4">
-            <Logo />
-            <H1>shadcn/ui React Native</H1>
-          </View>
-          <LegendList
-            data={COMPONENTS}
-            keyExtractor={(item) => item.href}
-            renderItem={({ item }) => <ShowcaseLink item={item} />}
-            ItemSeparatorComponent={() => (
-              <View className="h-0.5 w-full py-1" />
-            )}
-            estimatedItemSize={121}
-            recycleItems
-          />
-        </View>
-      </ScrollView>
+      <View className="flex gap-4">
+        <LegendList
+          ListHeaderComponent={
+            <View className="flex flex-row items-center gap-4 p-4">
+              <Logo />
+              <H1>shadcn/ui React Native</H1>
+            </View>
+          }
+          data={COMPONENTS}
+          keyExtractor={(item) => item.href}
+          renderItem={({ item }) => <ShowcaseLink item={item} />}
+          ItemSeparatorComponent={() => <View className="h-4 w-full" />}
+          estimatedItemSize={121}
+          recycleItems
+        />
+      </View>
     </SafeAreaView>
   );
 }
@@ -119,12 +117,10 @@ function Logo() {
 
 function ShowcaseLink({ item }: { item: NavItem }) {
   return (
-    <Link href={item.href}>
+    <Link href={item.href} className="px-4">
       <Card className="w-full">
         <CardHeader>
           <CardTitle>{item.name}</CardTitle>
-          {/* <CardDescription>{item.content}</CardDescription> */}
-          {/* <CardAction>Card Action</CardAction> */}
         </CardHeader>
         <CardContent>
           <P>{item.content}</P>

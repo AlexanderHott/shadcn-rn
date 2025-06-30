@@ -1,6 +1,13 @@
 import type { ComponentProps } from "react";
 import { useRef } from "react";
 import {
+  BottomSheetBackdrop as GBottomSheetBackdropComponent,
+  BottomSheetModal as GBottomSheetModalComponent,
+  BottomSheetScrollView as GBottomSheetScrollViewComponent,
+} from "@gorhom/bottom-sheet";
+import { cssInterop } from "nativewind";
+
+import type {
   BottomSheetDraggableView,
   BottomSheetFlashList,
   BottomSheetFlatList,
@@ -11,12 +18,7 @@ import {
   BottomSheetTextInput,
   BottomSheetView,
   BottomSheetVirtualizedList,
-  BottomSheetBackdrop as GBottomSheetBackdropComponent,
-  BottomSheetModal as GBottomSheetModalComponent,
-  BottomSheetScrollView as GBottomSheetScrollViewComponent,
 } from "@gorhom/bottom-sheet";
-import { cssInterop } from "nativewind";
-
 import { cn } from "@/lib/utils";
 
 export {
