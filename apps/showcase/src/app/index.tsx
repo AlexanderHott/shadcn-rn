@@ -1,6 +1,5 @@
 import type { Href } from "expo-router";
 import { Image, View } from "react-native";
-import { SafeAreaView } from "react-native-safe-area-context";
 import { LegendList } from "@legendapp/list";
 
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
@@ -23,11 +22,11 @@ const COMPONENTS = [
     name: "Bottom Sheet",
     content: "Display content that complements the main content of the screen.",
   },
-  {
-    href: "/showcase/bottom-sheet-modal",
-    name: "Bottom Sheet Modal",
-    content: "Display content that complements the main content of the screen.",
-  },
+  // {
+  //   href: "/showcase/bottom-sheet-modal",
+  //   name: "Bottom Sheet Modal",
+  //   content: "Display content that complements the main content of the screen.",
+  // },
   {
     href: "/showcase/button",
     name: "Button",

@@ -38,7 +38,7 @@ export const TouchableOpacity = forwardRef<
  * Since nativewind doesn't support 'inline-flex', we need to apply 'self-center' to make the button not stretch fully. You can override this behavior with the 'self-*' classes on the button, or change the code below.
  */
 const buttonVariants = cva(
-  "flex items-center justify-center gap-2 whitespace-nowrap rounded-md self-center overflow-hidden",
+  "flex flex-row items-center justify-center gap-2 whitespace-nowrap rounded-md self-center overflow-hidden",
   {
     variants: {
       variant: {
@@ -138,7 +138,7 @@ export const Button = forwardRef<ComponentRef<typeof Pressable>, ButtonProps>(
   ) => {
     const { colorScheme } = useColorScheme();
     const ripple = RIPPLES[colorScheme][variant ?? "default"];
-    const opacity = useSharedValue(1);
+    const opacity = useSharedValue(props.disabled ? 0.5 : 1);
 
     const animatedStyle = useAnimatedStyle(() => {
       return {

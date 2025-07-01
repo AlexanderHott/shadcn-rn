@@ -26,9 +26,9 @@ export function ScreenContainer({
       className={cn("flex flex-col gap-2 bg-background p-4", className)}
       {...rest}
     >
-      <Pressable className="h-full w-full" onPress={() => Keyboard.dismiss()}>
-        {children}
-      </Pressable>
+      {/* <Pressable className="h-full w-full" onPress={() => Keyboard.dismiss()}> */}
+      {children}
+      {/* </Pressable> */}
     </SafeAreaView>
   );
 }

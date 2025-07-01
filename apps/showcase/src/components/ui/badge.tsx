@@ -7,7 +7,7 @@ import { cva } from "class-variance-authority";
 import { cn } from "@/lib/utils";
 
 export const badgeVariants = cva(
-  "flex self-center items-center rounded-full border border-border px-2.5 py-0.5 transition-colors focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2",
+  "flex flex-row gap-1 self-center items-center rounded-full border border-border px-2.5 py-0.5 transition-colors focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2",
   {
     variants: {
       variant: {
