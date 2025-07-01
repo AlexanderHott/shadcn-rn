@@ -1,41 +1,43 @@
-import { SafeAreaView, ScrollView, View } from "react-native";
+import { View } from "react-native";
 import { Feather } from "@expo/vector-icons";
 
 import { Button, ButtonText } from "@/components/ui/button";
+import { ScreenContainer } from "@/components/ui/container";
 import { H1 } from "@/components/ui/text";
+import { useColorScheme } from "@/lib/utils";
 
 export default function ButtonShowcaseScreen() {
+  const variants = [
+    "default",
+    "secondary",
+    "outline",
+    "ghost",
+    "destructive",
+  ] as const;
+  const { isDarkColorScheme } = useColorScheme();
   return (
-    <SafeAreaView className="w-full flex-1 items-center bg-white">
-      <ScrollView className="w-full">
-        <View className="m-4 gap-4">
-          <H1>Buttons</H1>
-          <Button className="">
-            <ButtonText>Click me</ButtonText>
+    <ScreenContainer edges={["bottom"]}>
+      <View className="gap-4">
+        <H1>Buttons</H1>
+        {variants.map((variant) => (
+          <Button variant={variant}>
+            <ButtonText>{variant}</ButtonText>
           </Button>
-          <Button variant="secondary" className="self-end">
-            <ButtonText>Click me</ButtonText>
-          </Button>
-          <Button variant="outline">
-            <ButtonText>Click me</ButtonText>
-          </Button>
-          <Button variant="ghost">
-            <ButtonText>Click me</ButtonText>
-          </Button>
-          <Button variant="destructive">
-            <ButtonText>Click me</ButtonText>
-          </Button>
-          <Button size="sm">
-            <ButtonText>Click me</ButtonText>
-          </Button>
-          <Button size="lg">
-            <ButtonText>Click me</ButtonText>
-          </Button>
-          <Button size="icon">
-            <Feather name="plus" color={"white"} size={20} />
-          </Button>
-        </View>
-      </ScrollView>
-    </SafeAreaView>
+        ))}
+        <Button size="sm">
+          <ButtonText>small</ButtonText>
+        </Button>
+        <Button size="lg">
+          <ButtonText>large</ButtonText>
+        </Button>
+        <Button size="icon">
+          <Feather
+            name="plus"
+            color={isDarkColorScheme ? "black" : "white"}
+            size={20}
+          />
+        </Button>
+      </View>
+    </ScreenContainer>
   );
 }

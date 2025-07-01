@@ -1,13 +1,19 @@
 import type { VariantProps } from "class-variance-authority";
 import type { ComponentRef } from "react";
-import type { TouchableOpacityProps as RNTouchableOpacityProps } from "react-native";
+import type {
+  PressableProps,
+  TouchableOpacityProps as RNTouchableOpacityProps,
+} from "react-native";
 import { createContext, forwardRef, useContext } from "react";
-import { TouchableOpacity as RNTouchableOpacity } from "react-native";
+import {
+  Pressable,
+  TouchableOpacity as RNTouchableOpacity,
+} from "react-native";
 import { cva } from "class-variance-authority";
 
 import type { TextProps } from "@/components/ui/text";
 import { Text } from "@/components/ui/text";
-import { cn } from "@/lib/utils";
+import { cn, useColorScheme } from "@/lib/utils";
 
 export type TouchableOpacityProps = RNTouchableOpacityProps;
 
@@ -24,7 +30,7 @@ export const TouchableOpacity = forwardRef<
  * Since nativewind doesn't support 'inline-flex', we need to apply 'self-center' to make the button not stretch fully. You can override this behavior with the 'self-*' classes on the button, or change the code below.
  */
 const buttonVariants = cva(
-  "flex items-center justify-center gap-2 whitespace-nowrap rounded-md self-center",
+  "flex items-center justify-center gap-2 whitespace-nowrap rounded-md self-center overflow-hidden",
   {
     variants: {
       variant: {
@@ -48,20 +54,20 @@ const buttonVariants = cva(
     },
   },
 );
-const buttonTextVariants = cva("text-sm font-medium ", {
+const buttonTextVariants = cva("text-sm font-medium", {
   variants: {
     variant: {
       default: "text-primary-foreground",
       destructive: "text-destructive-foreground",
-      outline: "",
+      outline: "text-primary",
       secondary: "text-secondary-foreground",
-      ghost: "",
+      ghost: "text-primary",
       // link: "text-primary underline-offset-4 underline",
     },
     size: {
       default: "",
-      sm: "",
-      lg: "",
+      sm: "text-xs",
+      lg: "text-base",
       icon: "",
     },
   },
@@ -70,6 +76,23 @@ const buttonTextVariants = cva("text-sm font-medium ", {
     size: "default",
   },
 });
+
+const RIPPLES = {
+  light: {
+    default: "hsla(0, 0%, 90%, 0.3)",
+    destructive: "hsla(0, 0%, 10%, 0.3)",
+    outline: "hsla(0, 0%, 10%, 0.3)",
+    secondary: "hsla(0, 0%, 10%, 0.3)",
+    ghost: "hsla(0, 0%, 10%, 0.3)",
+  },
+  dark: {
+    default: "hsla(0, 0%, 10%, 0.3)",
+    destructive: "hsla(0, 0%, 90%, 0.3)",
+    outline: "hsla(0, 0%, 90%, 0.3)",
+    secondary: "hsla(0, 0%, 90%, 0.3)",
+    ghost: "hsla(0, 0%, 90%, 0.3)",
+  },
+} as const;
 
 export type ButtonVariants = VariantProps<typeof buttonVariants>;
 const ButtonContext = createContext<ButtonVariants | null>(null);
@@ -83,23 +106,28 @@ export function useButton() {
   return ctx;
 }
 
-export type ButtonProps = TouchableOpacityProps &
-  VariantProps<typeof buttonVariants>;
+export type ButtonProps = PressableProps & VariantProps<typeof buttonVariants>;
 
-export const Button = forwardRef<
-  ComponentRef<typeof TouchableOpacity>,
-  ButtonProps
->(({ className, size, variant, ...props }, ref) => {
-  return (
-    <ButtonContext.Provider value={{ size, variant }}>
-      <TouchableOpacity
-        className={cn(buttonVariants({ variant, size, className }))}
-        ref={ref}
-        {...props}
-      />
-    </ButtonContext.Provider>
-  );
-});
+export const Button = forwardRef<ComponentRef<typeof Pressable>, ButtonProps>(
+  ({ className, size, variant, ...props }, ref) => {
+    const { colorScheme } = useColorScheme();
+    const ripple = RIPPLES[colorScheme][variant ?? "default"];
+    return (
+      <ButtonContext.Provider value={{ size, variant }}>
+        <Pressable
+          android_ripple={{
+            color: ripple,
+            borderless: true,
+            foreground: true,
+          }}
+          className={cn(buttonVariants({ variant, size, className }))}
+          ref={ref}
+          {...props}
+        />
+      </ButtonContext.Provider>
+    );
+  },
+);
 Button.displayName = "Button";
 
 export type ButtonTextProps = TextProps &

@@ -83,13 +83,12 @@ function RootLayoutNav() {
         <StatusBar style={isDarkColorScheme ? "light" : "dark"} />
         <ThemeProvider value={isDarkColorScheme ? DARK_THEME : LIGHT_THEME}>
           <BottomSheetModalProvider>
-            <Stack>
-              <Stack.Screen
-                name="index"
-                options={{
-                  headerRight: ThemeSwitcher,
-                }}
-              />
+            <Stack
+              screenOptions={{
+                headerRight: ThemeSwitcher,
+              }}
+            >
+              <Stack.Screen name="index" />
             </Stack>
           </BottomSheetModalProvider>
         </ThemeProvider>

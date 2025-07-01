@@ -91,7 +91,7 @@ export default function Index() {
       renderItem={({ item }) => <ShowcaseLink item={item} />}
       ListHeaderComponent={
         <View className="flex flex-row items-center gap-4 p-4">
-          {/* <Logo /> */}
+          <Logo />
           <H1 adjustsFontSizeToFit numberOfLines={1}>
             shadcn/ui React Native
           </H1>
@@ -107,9 +107,9 @@ export default function Index() {
 function Logo() {
   const { isDarkColorScheme } = useColorScheme();
   // eslint-disable-next-line @typescript-eslint/no-require-imports
-  const light = require("@/assets/images/icon.png") as number;
+  const dark = require("@/assets/images/icon.png") as number;
   // eslint-disable-next-line @typescript-eslint/no-require-imports
-  const dark = require("@/assets/images/icon-dark.png") as number;
+  const light = require("@/assets/images/icon-dark.png") as number;
   return (
     <Image
       source={isDarkColorScheme ? dark : light}
