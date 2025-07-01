@@ -1,14 +1,22 @@
 import type { VariantProps } from "class-variance-authority";
 import type { ComponentRef } from "react";
 import type {
+  GestureResponderEvent,
   PressableProps,
   TouchableOpacityProps as RNTouchableOpacityProps,
 } from "react-native";
 import { createContext, forwardRef, useContext } from "react";
 import {
+  Platform,
   Pressable,
   TouchableOpacity as RNTouchableOpacity,
 } from "react-native";
+import Animated, {
+  runOnJS,
+  useAnimatedStyle,
+  useSharedValue,
+  withTiming,
+} from "react-native-reanimated";
 import { cva } from "class-variance-authority";
 
 import type { TextProps } from "@/components/ui/text";
@@ -106,15 +114,65 @@ export function useButton() {
   return ctx;
 }
 
-export type ButtonProps = PressableProps & VariantProps<typeof buttonVariants>;
+export type ButtonProps = PressableProps &
+  VariantProps<typeof buttonVariants> & {
+    animationDuration?: number;
+    activeOpacity?: number;
+  };
+
+const AnimatedPressable = Animated.createAnimatedComponent(Pressable);
 
 export const Button = forwardRef<ComponentRef<typeof Pressable>, ButtonProps>(
-  ({ className, size, variant, ...props }, ref) => {
+  (
+    {
+      className,
+      size,
+      variant,
+      onPressIn,
+      onPressOut,
+      animationDuration = 150,
+      activeOpacity = 0.75,
+      ...props
+    },
+    ref,
+  ) => {
     const { colorScheme } = useColorScheme();
     const ripple = RIPPLES[colorScheme][variant ?? "default"];
+    const opacity = useSharedValue(1);
+
+    const animatedStyle = useAnimatedStyle(() => {
+      return {
+        opacity: opacity.value,
+      };
+    });
+    const handlePressIn = Platform.select({
+      ios: (event: GestureResponderEvent) => {
+        opacity.value = withTiming(activeOpacity, {
+          duration: animationDuration,
+        });
+
+        if (onPressIn) {
+          runOnJS(onPressIn)(event);
+        }
+      },
+      android: onPressIn,
+    });
+    const handlePressOut = Platform.select({
+      ios: (event: GestureResponderEvent) => {
+        opacity.value = withTiming(1, { duration: animationDuration });
+
+        if (onPressOut) {
+          runOnJS(onPressOut)(event);
+        }
+      },
+      android: onPressOut,
+    });
     return (
       <ButtonContext.Provider value={{ size, variant }}>
-        <Pressable
+        <AnimatedPressable
+          onPressIn={handlePressIn}
+          onPressOut={handlePressOut}
+          style={animatedStyle}
           android_ripple={{
             color: ripple,
             borderless: true,

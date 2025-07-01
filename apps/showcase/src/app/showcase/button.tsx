@@ -1,4 +1,5 @@
 import { View } from "react-native";
+import * as Haptics from "expo-haptics";
 import { Feather } from "@expo/vector-icons";
 
 import { Button, ButtonText } from "@/components/ui/button";
@@ -20,7 +21,13 @@ export default function ButtonShowcaseScreen() {
       <View className="gap-4">
         <H1>Buttons</H1>
         {variants.map((variant) => (
-          <Button variant={variant}>
+          <Button
+            key={variant}
+            variant={variant}
+            onPress={() =>
+              Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Heavy)
+            }
+          >
             <ButtonText>{variant}</ButtonText>
           </Button>
         ))}
