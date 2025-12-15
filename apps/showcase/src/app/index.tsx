@@ -48,6 +48,11 @@ const COMPONENTS = [
     content: "Displays a list with different item types.",
   },
   {
+    href: "/showcase/haptics",
+    name: "Haptics",
+    content: "Different haptic feedback styles.",
+  },
+  {
     href: "/showcase/input",
     name: "Input",
     content:

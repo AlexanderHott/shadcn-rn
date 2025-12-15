@@ -1,7 +1,11 @@
 import type { PressableProps } from "react-native";
 import React, { useState } from "react";
 import { Pressable, View } from "react-native";
-import { SafeAreaView } from "react-native-safe-area-context";
+import {
+  SafeAreaView,
+  useSafeAreaInsets,
+} from "react-native-safe-area-context";
+import * as Haptics from "expo-haptics";
 
 import {
   BottomSheet,
@@ -134,6 +138,7 @@ interface SelectSheetProps<T> {
 }
 function SelectSheet<T>(props: SelectSheetProps<T>) {
   const ref = useSheetRef();
+  const insets = useSafeAreaInsets();
 
   return (
     <>
@@ -144,14 +149,23 @@ function SelectSheet<T>(props: SelectSheetProps<T>) {
       <BottomSheet
         ref={ref}
         enableDynamicSizing
+        // snapPoints={["25%", "100%"]}
         animationConfigs={{ duration: 250 }}
+        style={{
+          marginTop: insets.top,
+          marginBottom: insets.bottom,
+        }}
       >
         <BottomSheetScrollView>
-          <View className="flex flex-row flex-wrap gap-2 p-8">
+          <View
+            className="flex flex-row flex-wrap items-center justify-center gap-2"
+            style={{ padding: 16, paddingBottom: insets.bottom + insets.top }}
+          >
             {props.items.map((item) => (
               <SelectItem
                 onPress={() => {
                   props.toggle(item);
+                  void Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Heavy);
                   if (props.closeOnSelect && !props.isEmpty()) {
                     ref.current?.dismiss();
                   }
